@@ -11,6 +11,11 @@ app.get("/", (req, res) => {
     res.json({ message: "Backend is working!" });
 });
 
+// Dedicated API endpoint to avoid static index.html being served for '/'
+app.get('/api', (req, res) => {
+    res.json({ message: 'Backend API is working!' });
+});
+
 app.get("/html", (req, res) => {
     res.sendFile(path.join(__dirname, "index.html"));
 });

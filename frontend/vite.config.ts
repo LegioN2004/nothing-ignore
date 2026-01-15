@@ -1,7 +1,17 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
 
-// https://vite.dev/config/
 export default defineConfig({
-  plugins: [react()],
-})
+    plugins: [react()],
+    // ADD THIS SECTION:
+    preview: {
+        host: true, // Listens on all addresses (0.0.0.0)
+        port: 8082, // Ensures it matches your start command
+        allowedHosts: [
+            "fe.milinda.me", // Allow your specific domain
+            "www.fe.milinda.me", // Optional: Allow www subdomain
+            "be.milinda.me", // Allow your specific domain
+            "www.be.milinda.me", // Optional: Allow www subdomain
+        ],
+    },
+});

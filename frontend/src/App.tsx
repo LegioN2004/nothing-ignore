@@ -1,10 +1,20 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import './App.css'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
-import './App.css'
 
 function App() {
   const [count, setCount] = useState(0)
+  const [backendMsg, setBackendMsg] = useState<string>('')
+
+  useEffect(() => {
+    fetch('http://localhost:3000/api')
+      .then((res) => res.json())
+      .then((data) => {
+        setBackendMsg(data?.message ?? JSON.stringify(data))
+      })
+      .catch((err) => setBackendMsg(`Error: ${err.message}`))
+  }, [])
 
   return (
     <>
@@ -21,6 +31,7 @@ function App() {
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
         </button>
+        <p style={{ marginTop: 12 }}>Backend: {backendMsg || 'loading...'}</p>
         <p>
           Edit <code>src/App.tsx</code> and save to test HMR
         </p>
