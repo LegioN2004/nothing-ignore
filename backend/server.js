@@ -2,7 +2,7 @@ const express = require("express");
 const path = require("path");
 const app = express();
 const cors = require("cors");
-const PORT = process.env.PORT || 3000;
+const PORT = 8083;
 
 app.use(cors());
 app.use(express.static(path.join(__dirname)));
@@ -12,8 +12,8 @@ app.get("/", (req, res) => {
 });
 
 // Dedicated API endpoint to avoid static index.html being served for '/'
-app.get('/api', (req, res) => {
-    res.json({ message: 'Backend API is working!' });
+app.get("/api", (req, res) => {
+    res.json({ message: "Backend API is working!" });
 });
 
 app.get("/html", (req, res) => {
