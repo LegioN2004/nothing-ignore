@@ -8,7 +8,7 @@ function App() {
     const [backendMsg, setBackendMsg] = useState<string>("");
 
     useEffect(() => {
-        fetch("http://be.milinda.me/api")
+        fetch("https://be.milinda.me/api")
             .then((res) => res.json())
             .then((data) => {
                 setBackendMsg(data?.message ?? JSON.stringify(data));
